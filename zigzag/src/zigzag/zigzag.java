@@ -109,6 +109,6 @@ public class zigzag {
 			}
 		} while (!valid || nrZigz(section)==false);
 		zigZag(section,length);
-		myFinch.quit();
+//		myFinch.quit();
 	}
 }
