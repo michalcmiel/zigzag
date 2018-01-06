@@ -10,25 +10,28 @@ public class zigzag {
 	static Finch myFinch = new Finch();
 	static int length;
 	static int section;
-	
-	public static boolean nrZigz(int section){
-			if (section<2 || section>10) {
-				System.out.println("Number between 2 and 10");
-				return false;
-			}
-			if (section % 2 != 0) {
-				System.out.println("Please input even number.");
-				return false;
-			}
-		return true;
-	}
-	
+
 	public static boolean length(int length) {
 		if (length<30 || length>80) {
+		System.out.println(+length + " doesnt fit the criteria");
 		System.out.println("Please input a number between 30cm and 80cm");
 		return false;
 		}
 		return true;
+	}
+	
+	public static boolean nrZigz(int section){
+		if (section<2 || section>10) {
+			System.out.println(+section + " doesnt fit the criteria");
+			System.out.println("Number between 2 and 10");
+			return false;
+		}
+		if (section % 2 != 0) {
+			System.out.println(+section+ " is not an even number");
+			System.out.println("Please input even number.");
+			return false;
+		}
+	return true;
 	}
 
 	public static void zigZag(int section, int length) {
@@ -109,6 +112,6 @@ public class zigzag {
 			}
 		} while (!valid || nrZigz(section)==false);
 		zigZag(section,length);
-//		myFinch.quit();
+		myFinch.quit();
 	}
 }
