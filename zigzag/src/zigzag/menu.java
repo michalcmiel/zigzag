@@ -23,27 +23,27 @@ public class menu {
 		boolean valid=true;
 		do {
 			try {
-	    	System.out.println("Press 1 to repeat, or 2 to exit");
-			Scanner sc2=new Scanner(System.in);
-			exit=sc2.nextInt();
-			valid=true;
-				while (exit<1 || exit>2) {
-		        	System.out.println("press 1 to repeat, or 2 to exit, "+exit + " is a terrible option");
-					exit=sc2.nextInt();
-			}
-				if (exit == 1) {
+		    	System.out.println("Press 1 to repeat, or 2 to exit");
+				Scanner sc2=new Scanner(System.in);
+				exit=sc2.nextInt();
+				valid=true;
+				switch(exit) {
+				case 1:	
 					return true;
-			}
+				case 2:	
+					return false;
+				default:
+		        	valid = false;
+				}
 			}
 	        catch(InputMismatchException E)
 			{
 	        	valid=false;
-	        	System.out.println("Numerical value");
 			}
-		}while (!valid);
+		}while (!valid || exit ==1 && exit ==2);
 		return false;
 }
-	
+
 	public static void main(String[] args) {
 		boolean valid = true;
 		showMenu();
@@ -102,7 +102,6 @@ public class menu {
 		        catch(InputMismatchException E)
 		        {
 		    		showMenu();
-		        	System.out.println("Numerical numbers only, enter new number from the menu:");
 					valid = false;
 		        }
 		} while (!valid || option != 7);

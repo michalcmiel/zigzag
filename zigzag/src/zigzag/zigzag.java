@@ -1,26 +1,25 @@
 package zigzag;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
 import java.awt.Color;
 import edu.cmu.ri.createlab.terk.robot.finch.Finch;
+
+
+
 public class zigzag {
 	static Finch myFinch = new Finch();
-	static int length;
-	static int section;
+	static int length, section;
 
-	public static boolean length(int length) {
+	public boolean length(int length) {
 		if (length<30 || length>80) {
-		System.out.println(+length + " doesnt fit the criteria");
-		System.out.println("Please input a number between 30cm and 80cm");
-		return false;
+			System.out.println(+length + " doesnt fit the criteria");
+			System.out.println("Please input a number between 30cm and 80cm");
+			return false;
 		}
 		return true;
 	}
 	
-	public static boolean nrZigz(int section){
+	public static boolean sections(int section){
 		if (section<2 || section>10) {
 			System.out.println(+section + " doesnt fit the criteria");
 			System.out.println("Number between 2 and 10");
@@ -33,55 +32,24 @@ public class zigzag {
 		}
 	return true;
 	}
-
-	public static void zigZag(int section, int length) {
-		int length2 = (length * 85) / 2;
-		
-//		myFinch.setWheelVelocities(100, -100, 375);	//initial turn to the right
-		for (int i=0; i<section/2; i++) 
-		{
-			myFinch.buzz(2000, length2);	//first buzzer
-			myFinch.setLED(Color.green);	//green color
-			myFinch.setWheelVelocities(100, 100, length2);	//forward length2
-			myFinch.setWheelVelocities(-100, 100, 750);	//turning left
-			System.out.println("pierwszy zigzag");
-			
-			for (int j=0; j<1; j++) 
-			{
-				myFinch.buzz(4000, length2);	//second buzzer
-				myFinch.setLED(Color.red);	//red color
-				myFinch.setWheelVelocities(100, 100, length2);	//forward lengt2
-				myFinch.setWheelVelocities(100, -100, 750);		//turning right back to initial position
-				System.out.println("drugi zigzag");
-				
-			}
-		}
-		System.out.println("Straight line distance: "+ (length * section)+"cm");	//displays straight line distance
-		myFinch.setWheelVelocities(100, -100, 750);		//prepares the finch for retrace of movement
-		
-		for (int i=0; i<section/2; i++) 
-		{
-			myFinch.buzz(4000, length2); // tune 2
-			myFinch.setLED(Color.red);
-			myFinch.setWheelVelocities(100, 100, length2);
-			myFinch.setWheelVelocities(100, -100, 750);
-			System.out.println("pierwszy zigzag");
-			
-			for (int j=0; j<1; j++) 
-			{
-				myFinch.buzz(2000, length2);
-				myFinch.setLED(Color.green);
-				myFinch.setWheelVelocities(100, 100, length2);
-				myFinch.setWheelVelocities(-100, 100, 750);
-				System.out.println("drugi zigzag");
-				
-			}
-		}
-		myFinch.setWheelVelocities(-100, 100, 1000);
+	
+	public static void zig(int duration) {
+		myFinch.setLED(Color.green);
+		myFinch.buzz(2000, duration);
+		myFinch.setWheelVelocities(100, 100, duration);
+		myFinch.setWheelVelocities(-100, 100, 750);
+	}
+	
+	public static void zag(int duration) {
+		myFinch.setLED(Color.red);
+		myFinch.buzz(4000, duration);
+		myFinch.setWheelVelocities(100, 100, duration);
+		myFinch.setWheelVelocities(100, -100, 750);
 	}
 	
 	public static void main(String[] args) {
 		boolean valid = true;
+		
 		System.out.println("Length of the zigzag?(cm) between 30 and 80");
 		do {
 			try {
@@ -89,14 +57,13 @@ public class zigzag {
 				length=sc1.nextInt();
 				valid = true;
 			}
-			catch(InputMismatchException E) 	//exception = valid = false.
+			catch(InputMismatchException E) 
 			{
-				System.out.println("Numerical value only");	
-				Scanner sc1=new Scanner(System.in);
+				System.out.println("Numerical value only");
 				valid = false;
 			}
-		}while (!valid || length(length)==false);	//first checks valid, then length method
-		
+		}while (!valid || length(length)==false);
+
 		System.out.println("How many zigzags?");
 		do {
 			try {
@@ -107,11 +74,31 @@ public class zigzag {
 			catch(InputMismatchException E) 
 			{
 				System.out.println("Numerical value only");
-				Scanner sc2=new Scanner(System.in);
 				valid = false;
 			}
-		} while (!valid || nrZigz(section)==false);
-		zigZag(section,length);
+		} while (!valid || sections(section)==false);
+
+		int duration = (length * 85) / 2;
+		for (int i=0; i<2; i++) {
+			if (i==1) {
+				myFinch.setWheelVelocities(100, -100, 750);
+			}
+			for (int j=0; j<section/2; j++) {
+				if (i==0) {
+					zig(duration);
+				}else
+					zag(duration);
+				
+				for (int k=0; k<1; k++) {
+					if (i==0) {
+						zag(duration);
+					}else
+						zig(duration);
+				}
+			}
+		}
+		myFinch.setWheelVelocities(-100, 100, 900);
 		myFinch.quit();
+		System.out.println("Straight line distance: "+ (length * section)+"cm");
 	}
 }
