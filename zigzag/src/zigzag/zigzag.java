@@ -4,13 +4,11 @@ import java.util.Scanner;
 import java.awt.Color;
 import edu.cmu.ri.createlab.terk.robot.finch.Finch;
 
-
-
 public class zigzag {
 	static Finch myFinch = new Finch();
 	static int length, section;
-
-	public boolean length(int length) {
+	
+	public static boolean length(int length) {
 		if (length<30 || length>80) {
 			System.out.println(+length + " doesnt fit the criteria");
 			System.out.println("Please input a number between 30cm and 80cm");
@@ -18,11 +16,10 @@ public class zigzag {
 		}
 		return true;
 	}
-	
 	public static boolean sections(int section){
 		if (section<2 || section>10) {
 			System.out.println(+section + " doesnt fit the criteria");
-			System.out.println("Number between 2 and 10");
+			System.out.println("Please input number between 2 and 10");
 			return false;
 		}
 		if (section % 2 != 0) {
@@ -48,6 +45,7 @@ public class zigzag {
 	}
 	
 	public static void main(String[] args) {
+
 		boolean valid = true;
 		
 		System.out.println("Length of the zigzag?(cm) between 30 and 80");
@@ -79,6 +77,7 @@ public class zigzag {
 		} while (!valid || sections(section)==false);
 
 		int duration = (length * 85) / 2;
+		
 		for (int i=0; i<2; i++) {
 			if (i==1) {
 				myFinch.setWheelVelocities(100, -100, 750);
@@ -88,7 +87,6 @@ public class zigzag {
 					zig(duration);
 				}else
 					zag(duration);
-				
 				for (int k=0; k<1; k++) {
 					if (i==0) {
 						zag(duration);
@@ -97,8 +95,11 @@ public class zigzag {
 				}
 			}
 		}
+		
 		myFinch.setWheelVelocities(-100, 100, 900);
 		myFinch.quit();
+		System.out.println("Length of the traversed path(start to end of the zigzag): "+ (length * section/2)+"cm");
 		System.out.println("Straight line distance: "+ (length * section)+"cm");
+		
 	}
 }
