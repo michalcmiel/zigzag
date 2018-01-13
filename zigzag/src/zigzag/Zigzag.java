@@ -4,11 +4,10 @@ import java.util.Scanner;
 import java.awt.Color;
 import edu.cmu.ri.createlab.terk.robot.finch.Finch;
 
-public class zigzag {
-	static Finch myFinch = new Finch();
-	static int length, section;
-	
-	public static boolean length(int length) {
+public class Zigzag {
+	private static Finch myFinch = new Finch();
+
+	private static boolean length(int length) {
 		if (length<30 || length>80) {
 			System.out.println(+length + " doesnt fit the criteria");
 			System.out.println("Please input a number between 30cm and 80cm");
@@ -16,7 +15,8 @@ public class zigzag {
 		}
 		return true;
 	}
-	public static boolean sections(int section){
+	
+	private static boolean sections(int section){
 		if (section<2 || section>10) {
 			System.out.println(+section + " doesnt fit the criteria");
 			System.out.println("Please input number between 2 and 10");
@@ -30,14 +30,14 @@ public class zigzag {
 	return true;
 	}
 	
-	public static void zig(int duration) {
+	private static void zig(int duration) {
 		myFinch.setLED(Color.green);
 		myFinch.buzz(2000, duration);
 		myFinch.setWheelVelocities(100, 100, duration);
 		myFinch.setWheelVelocities(-100, 100, 750);
 	}
 	
-	public static void zag(int duration) {
+	private static void zag(int duration) {
 		myFinch.setLED(Color.red);
 		myFinch.buzz(4000, duration);
 		myFinch.setWheelVelocities(100, 100, duration);
@@ -45,9 +45,8 @@ public class zigzag {
 	}
 	
 	public static void main(String[] args) {
-
 		boolean valid = true;
-		
+		int length = 0, section = 0;
 		System.out.println("Length of the zigzag?(cm) between 30 and 80");
 		do {
 			try {
@@ -95,7 +94,6 @@ public class zigzag {
 				}
 			}
 		}
-		
 		myFinch.setWheelVelocities(-100, 100, 900);
 		myFinch.quit();
 		System.out.println("Length of the traversed path(start to end of the zigzag): "+ (length * section/2)+"cm");

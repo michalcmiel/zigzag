@@ -6,10 +6,7 @@ import java.util.Scanner;
 import edu.cmu.ri.createlab.terk.robot.finch.Finch;
 
 public class menu {
-	static int option;
-	static int exit;
-	
-	public static void showMenu() {
+	private static void showMenu() {
 		System.out.println("1. Follow light");
 		System.out.println("2. Draw shape");
 		System.out.println("3. Navigate");
@@ -19,7 +16,7 @@ public class menu {
 		System.out.println("7. Exit");
 	}
 	
-	public static boolean repeat(int exit) {
+	private static boolean repeat(int exit) {
 		boolean valid=true;
 		do {
 			try {
@@ -43,9 +40,10 @@ public class menu {
 		}while (!valid || exit ==1 && exit ==2);
 		return false;
 }
-
+	
 	public static void main(String[] args) {
 		boolean valid = true;
+		int exit = 0, option =0;
 		showMenu();
 		do {
 			try {
@@ -75,7 +73,7 @@ public class menu {
 		        case 4:
 		        	do {
 			        	System.out.println("DOES ZIGZAG");
-			        	zigzag.main(args);
+			        	Zigzag.main(args);
 		        	}while (repeat(exit)==true);
 		    		showMenu();
 		        	break;
@@ -102,6 +100,7 @@ public class menu {
 		        catch(InputMismatchException E)
 		        {
 		    		showMenu();
+		            System.out.println("This doesnt look like an option, choose a new NUMBER");
 					valid = false;
 		        }
 		} while (!valid || option != 7);
