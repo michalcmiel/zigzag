@@ -73,7 +73,7 @@ public class menu {
 		        case 4:
 		        	do {
 			        	System.out.println("DOES ZIGZAG");
-			        	Zigzag.main(args);
+			        	Zigzag2.main(args);
 		        	}while (repeat(exit)==true);
 		    		showMenu();
 		        	break;
