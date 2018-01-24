@@ -72,8 +72,7 @@ public class menu {
 		        	break;
 		        case 4:
 		        	do {
-			        	System.out.println("DOES ZIGZAG");
-			        	Zigzag2.main(args);
+			        	Zigzag.main(args);
 		        	}while (repeat(exit)==true);
 		    		showMenu();
 		        	break;

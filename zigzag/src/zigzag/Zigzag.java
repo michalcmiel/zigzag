@@ -9,7 +9,6 @@ public class Zigzag {
 	private static boolean valid=true;
 	private static int length=0, section=0;
 	
-	
 	public static int getLength (){
 		//This method will return int length when specific requirements are met
 		System.out.println("Length of the zigzag?(cm) between 30 and 80");
