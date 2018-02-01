@@ -3,8 +3,6 @@ package zigzag;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import edu.cmu.ri.createlab.terk.robot.finch.Finch;
-
 public class Menu {
 	private static void showMenu() {
 		System.out.println("1. Follow light");
