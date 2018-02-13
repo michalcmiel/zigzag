@@ -17,14 +17,12 @@ public class Inputs {
 				valid = true;
 				if (length<30 || length>80) {	//valid=false if true
 					System.out.println(+length + " doesnt fit the criteria");
-					System.out.println("Please input a number between 30cm and 80cm");
 					valid = false;
 				}else valid = true;	//valid=true if false
 			}
 			catch(InputMismatchException E) 
 			{
 				System.out.println("Numerical value only!");
-				System.out.println("Please enter a new number");
 				valid = false;	//exception handled, valid=false, while loop executes
 			}
 		}while (!valid);
@@ -42,18 +40,15 @@ public class Inputs {
 				valid = true;
 				if (section<2 || section>10) {	//valid = false when true
 					System.out.println(+section + " doesnt fit the criteria");
-					System.out.println("Please input number between 2 and 10");
 					valid = false;
 				}else if (section % 2 != 0) {	//valid = false when true
 					System.out.println(+section+ " is not an even number");
-					System.out.println("Please input an even number.");
 					valid = false;
 				}else valid = true;	//valid = true when above are false
 				}
 				catch(InputMismatchException E) 
 				{
 					System.out.println("Numerical value only!");
-					System.out.println("Please enter a new number");
 					valid = false;	//exception handled, valid=false, while loop executes
 				}
 		} while (!valid);

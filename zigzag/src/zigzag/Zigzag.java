@@ -9,7 +9,7 @@ public class Zigzag {
 	static Color color1 = Color.green, color2 = Color.red;
 	
 	public static void zigZag(int length, int section){
-		int duration = (length * 85) / 2;	//duration needed to travel for length specified
+		int duration = (length * 85);	//duration needed to travel for length specified
 		for (int i=0; i<2; i++) {	//for loop // i==0 zigzag, i==1 retrace
 			if (i==1) {
 				myFinch.setWheelVelocities(100, -100, 750);	//finch turns around for retrace
@@ -25,8 +25,9 @@ public class Zigzag {
 				}
 		}
 		myFinch.setWheelVelocities(-100, 100, 900);	//turns robot around for starting position
-		System.out.println("Length of the traversed path(start to end of the zigzag): "+ (length * section/2)+"cm");
+		travPath(length, section);
 		System.out.println("Straight line distance: "+ (length * section)+"cm");
+		System.out.println("Length of the traversed path(start to end of the zigzag): "+travPath(length, section)+"cm");
 		//printing out the information of what just happened
 	}
 	
@@ -42,6 +43,11 @@ public class Zigzag {
 		myFinch.buzz(buzzer2, duration);
 		myFinch.setWheelVelocities(straightLineSpeed, straightLineSpeed, duration);
 		myFinch.setWheelVelocities(100, -100, 750);
+	}
+	
+	public static double travPath (int length, int section){
+		double travpath = (Math.sqrt(Math.pow(length, 2) + Math.pow(length, 2))) * section/2;
+		return travpath;
 	}
 	
 	public static void main(String[] args) {
