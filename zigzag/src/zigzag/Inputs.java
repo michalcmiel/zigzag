@@ -5,34 +5,27 @@ import java.util.Scanner;
 
 public class Inputs {
 	private static boolean valid=true;
-	
-	public static int getLength (){
+
+	public static int getLength (){	//This method will return int length when specific requirements are met
 		int length = 0;
-		//This method will return int length when specific requirements are met
+		Scanner sc1 = new Scanner(System.in);
 		System.out.println("Length of the zigzag?(cm) between 30 and 80");
-		do {	//do loop until !valid
-			try {	//exception handler
-				Scanner sc1 = new Scanner(System.in);
-				length=sc1.nextInt();		//scans for a new int
-				valid = true;
-				if (length<30 || length>80) {	//valid=false if true
-					System.out.println(+length + " doesnt fit the criteria");
-					valid = false;
-				}else valid = true;	//valid=true if false
+		do {
+			try {
+				length=sc1.nextInt();
 			}
 			catch(InputMismatchException E) 
 			{
 				System.out.println("Numerical value only!");
-				valid = false;	//exception handled, valid=false, while loop executes
+				sc1.nextInt();
 			}
-		}while (!valid);
-		return length;	//returns int length
+		}while (length<30 || length>80);
+		return length;
 	}
 	
-	public static int getSection(){
+	public static int getSection(){ //this method will return int section when specific requirements are met
 		int section = 0;
-		//this method will return int section when specific requirements are met
-		System.out.println("How many zigzags?");
+		System.out.println("How many zigzags?(even number from 2-10)");
 		do {	//do loop until !valid
 			try {	//exception handler
 				Scanner sc2 = new Scanner(System.in);
@@ -51,7 +44,7 @@ public class Inputs {
 					System.out.println("Numerical value only!");
 					valid = false;	//exception handled, valid=false, while loop executes
 				}
-		} while (!valid);
-		return section;	//returns int section
+		}while (!valid);
+		return 0;	//returns int section
 	}
 }
