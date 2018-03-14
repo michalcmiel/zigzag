@@ -15,7 +15,7 @@ public class Main {
 	}
 	
 	private static boolean repeat(int exit) {
-		boolean valid=true;
+		boolean valid;
 		do {
 			try {
 		    	System.out.println("Press 1 to repeat, or 2 to exit");
