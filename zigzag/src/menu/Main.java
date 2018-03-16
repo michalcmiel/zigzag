@@ -1,9 +1,15 @@
 package menu;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
+	
+	static Scanner sc1=new Scanner(System.in);
+
+	
+	
 	private static void showMenu() {
 		System.out.println("1. Follow light");
 		System.out.println("2. Draw shape");
@@ -19,8 +25,7 @@ public class Main {
 		do {
 			try {
 		    	System.out.println("Press 1 to repeat, or 2 to exit");
-				Scanner sc2=new Scanner(System.in);
-				exit=sc2.nextInt();
+				exit=sc1.nextInt();
 				valid=true;
 				switch(exit) {
 				case 1:	
@@ -41,12 +46,12 @@ public class Main {
 	
 	public static void main(String[] args) {
 		boolean valid = true;
-		int exit = 0, option =0;
+		int exit = 0, option = 0;
 		showMenu();
 		do {
 			try {
-			Scanner sc1=new Scanner(System.in);
 			option=sc1.nextInt();
+			sc1.nextLine();
 			valid = true;
 		    switch (option)
 		    {
@@ -76,14 +81,14 @@ public class Main {
 		        	break;
 		        case 5:
 		        	do {
-		        		followObject.Main.main(args);
+		        		followObject.FollowObject.main(args);
 		        	}while (repeat(exit)==true);
 		    		showMenu();
 		        	break;
 		        case 6:
-		        	do {
-		        		dance.Dance.main(args);
-		        	}while (repeat(exit)==true);
+		        	//do {
+			        	dance.Dance.main(args);
+		        	//}while (repeat(exit)==true);
 		    		showMenu();
 		        	break;
 		        case 7:
@@ -99,7 +104,10 @@ public class Main {
 		    		showMenu();
 		            System.out.println("This doesnt look like an option, choose a new NUMBER");
 					valid = false;
+		        }catch (NoSuchElementException E){
+					sc1.nextLine();
 		        }
 		} while (!valid || option != 7);
+	    sc1.close();
 		}
 	}
