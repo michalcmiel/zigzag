@@ -39,7 +39,7 @@ public class GUI {
 		});
 		button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				navigate.Main.main(args);
+				navigate.Navigate.main(args);;
 			}
 		});
 		button4.addActionListener(new ActionListener(){
